@@ -146,7 +146,7 @@ def run():
     for user in samdb_loc.search(base=adbase, expression=user_filter, attrs=["mail", "sAMAccountName"]):
         # Check if the mail attribute exists
         if "mail" in user:
-            mail = user["mail"][0]  # Extract the mail attribute
+            mail = str(user["mail"]) # Extract the mail attribute
         else:
             syslog.syslog(syslog.LOG_WARNING, f"User {user['sAMAccountName'][0]} does not have an email address.")
             continue  # Skip to the next user if mail is not present
