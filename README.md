@@ -1,17 +1,19 @@
-Google Apps Password Sync for Samba4
+Forked from https://github.com/sfonteneau/samba4-gaps.git
+
+Google Apps Password Sync for Samba4 
 ===========
 
 Reads from your Samba4 AD and updates passwords in Google Apps 
-Note that this solution requires you to enable "password hash userPassword schemes = CryptSHA256 CryptSHA512" in smb.conf
+Note that this solution requires you to enable "password hash userPassword schemes = CryptSHA512" in smb.conf
 
 Install notes
 ===========
-1. add params "password hash userPassword schemes = CryptSHA256 CryptSHA512" in smb.conf
+1. add params "password hash userPassword schemes = CryptSHA512" in smb.conf
 2. restart samba
 3. Change the password of a user to synchronize (changing the password will be mandatory for all users in order to feed the new hashes)
 4. apt-get install git python3-googleapi python3-pycryptodome python3-peewee -y
 5. cd /tmp
-6. git clone https://github.com/sfonteneau/samba4-gaps.git
+6. git clone https://github.com/jakubmuransky/samba4-gaps
 7. mv samba4-gaps /opt/samba4-gaps
 8. mkdir /etc/gaps
 9. cp -f gaps.conf.template /etc/gaps/gaps.conf

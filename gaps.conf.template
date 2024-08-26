@@ -2,7 +2,7 @@
 domain = yourdomain.com
 replace_domain = false
 dbpath=/opt/samba4-gaps/last_send.db
-attr_password=virtualCryptSHA256
+attr_password=virtualCryptSHA512
 
 
 [google]
@@ -10,4 +10,5 @@ admin_email = adminuser@yourdomain.com
 service_json = /etc/gaps/service.json
 
 [samba]
-basedn = 
+base = CN=Users,DC=example,DC=domain,DC=com
+group = CN=securitygroup,CN=Users,DC=example,DC=domain,DC=com

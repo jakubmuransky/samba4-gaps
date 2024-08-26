@@ -148,14 +148,8 @@ def run():
         if "mail" in user:
             mail = user["mail"][0]  # Extract the mail attribute
         else:
-            print(f"Error: User {user['sAMAccountName'][0]} does not have an email address.")
+            syslog.syslog(syslog.LOG_WARNING, f"User {user['sAMAccountName'][0]} does not have an email address.")
             continue  # Skip to the next user if mail is not present
-        
-        # Extract the sAMAccountName attribute
-        sAMAccountName = user.get("sAMAccountName", [""])[0]  # Get sAMAccountName, default to an empty string if not present
-
-        # Print the user details
-        print(f"User: {sAMAccountName}, Email: {mail}")
 
         password = testpawd.get_account_attributes(samdb_loc,None,adbase,filter="(sAMAccountName=%s)" % (str(user["sAMAccountName"])),scope=ldb.SCOPE_SUBTREE,attrs=[passwordattr],decrypt=False)
         if not passwordattr in password:
